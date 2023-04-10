@@ -2,6 +2,10 @@
   font-family: "Proza Libre", sans-serif;
 }
 
+body {
+  background: #f0f0f0;
+}
+
 header {
   font-style: normal;
   font-weight: 400;
@@ -11,17 +15,23 @@ header {
   background-color: #562b81;
 }
 
-img {
-  width: 341px;
-  height: 245px;
-  border-radius: 4px;
-}
-
 .new-entry {
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
   line-height: 41px;
+  padding-top: 16px;
+  padding-bottom: 9px;
+}
+
+img {
+  height: 245px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
 }
 
 .minor-heading {
@@ -29,4 +39,75 @@ img {
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
+  padding-bottom: 9px;
+  padding-top: 25px;
+}
+
+.small-box {
+  width: 100%;
+  height: 40px;
+}
+
+.large-box {
+  width: 100%;
+  height: 149px;
+}
+
+.inputs {
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  font-family: "Proza Libre", sans-serif;
+  font-size: 16px;
+  color: #f0f0f0;
+  background: #562b81;
+  border-radius: 4px;
+  position: absolute;
+  width: 72px;
+  height: 32px;
+  left: 285px;
+  top: 794px;
+}
+
+@media screen and (min-width: 768px) {
+  .entry-form {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .display {
+    display: flex;
+  }
+
+  .inputs {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .minor-heading {
+    padding-top: 0;
+  }
+
+  .image {
+    width: 50%;
+    margin-right: 10px;
+  }
+
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .button button {
+    position: unset;
+  }
 }

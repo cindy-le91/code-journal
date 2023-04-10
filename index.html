@@ -25,28 +25,27 @@
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form">
+    <div data-view="entry-form" class="entry-form">
       <form>
         <div class="new-entry">New Entry</div>
-        <div><img src="./images/placeholder-image-square.jpg"></div>
+        <div class="display">
+          <div class="image"><img src="./images/placeholder-image-square.jpg"></div>
 
-        <div>
-          <span class="minor-heading">Title</span>
-          <div><input type="text" id="title"></div>
-        </div>
-
-        <div>
-          <span class="minor-heading">Photo URL</span>
-          <div><input type="text" id="image-url"></div>
-        </div>
-
-        <div>
-          <span class="minor-heading">Notes</span>
-          <div>
-            <textarea required rows="5" name="notes" id="user-notes"></textarea>
+          <div class="inputs">
+            <div class="minor-heading">Title</div>
+            <div><input class="small-box" type="text" id="title"></div>
+            <div class="minor-heading">Photo URL</div>
+            <div><input class="small-box" type="text" id="image-url"></div>
           </div>
         </div>
+
         <div>
+          <div class="minor-heading">Notes</div>
+          <div>
+            <textarea class="large-box" required rows="5" name="notes" id="user-notes"></textarea>
+          </div>
+        </div>
+        <div class="button">
           <button type="submit">SAVE</button>
         </div>
 
