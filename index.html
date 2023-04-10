@@ -25,7 +25,33 @@
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form"></div>
+    <div data-view="entry-form">
+      <form>
+        <div class="new-entry">New Entry</div>
+        <div><img src="./images/placeholder-image-square.jpg"></div>
+
+        <div>
+          <span class="minor-heading">Title</span>
+          <div><input type="text" id="title"></div>
+        </div>
+
+        <div>
+          <span class="minor-heading">Photo URL</span>
+          <div><input type="text" id="image-url"></div>
+        </div>
+
+        <div>
+          <span class="minor-heading">Notes</span>
+          <div>
+            <textarea required rows="5" name="notes" id="user-notes"></textarea>
+          </div>
+        </div>
+        <div>
+          <button type="submit">SAVE</button>
+        </div>
+
+      </form>
+    </div>
     <div data-view="entries" class="hidden"></div>
   </main>
   <script src="js/data.js"></script>
