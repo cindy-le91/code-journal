@@ -55,6 +55,13 @@ function renderEntry(entry) {
   notes.textContent = entry.notes;
   textDiv.appendChild(notes);
 
+  return ul;
 }
 
-renderEntry(data.entries[0]);
+const div = document.querySelector('.all-entries');
+document.addEventListener('DOMContentLoaded', function (event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    const dataEntry = renderEntry(data.entries[i]);
+    div.appendChild(dataEntry);
+  }
+});

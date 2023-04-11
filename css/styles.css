@@ -147,8 +147,10 @@ textarea:focus {
   }
 
   .image-entry-desktop {
-    min-height: 350px;
-    min-width: 350px;
+    object-position: 50% 50%;
+    object-fit: contain;
+    min-width: 400px;
+    min-height: 400px;
   }
 
   .is-justify-content-space-between {
