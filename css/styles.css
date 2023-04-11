@@ -71,8 +71,8 @@ button {
   position: absolute;
   width: 72px;
   height: 32px;
-  left: 285px;
-  top: 794px;
+  left: none;
+  top: none;
 }
 
 @media screen and (min-width: 768px) {
