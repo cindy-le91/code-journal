@@ -37,7 +37,7 @@ function renderEntry(entry) {
 
   const image = document.createElement('img');
   image.setAttribute('class', 'image-entry-desktop');
-  image.setAttribute('src', entry.url);
+  image.setAttribute('src', entry.image);
   imageDiv.appendChild(image);
 
   const textLi = document.createElement('li');

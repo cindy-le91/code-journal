@@ -184,3 +184,13 @@ ul {
 #new-button {
   padding-left: 200px;
 }
+
+.no-entries {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.menu-entries {
+  padding-left: 15px;
+  font-size: 16px;
+}
