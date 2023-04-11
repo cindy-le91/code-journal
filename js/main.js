@@ -22,3 +22,39 @@ submitForm.addEventListener('submit', function (event) {
   img.src = './images/placeholder-image-square.jpg';
   submitForm.reset();
 });
+
+function renderEntry(entry) {
+
+  const ul = document.createElement('ul');
+  ul.setAttribute('class', 'is-flex');
+
+  const imageLi = document.createElement('li');
+  imageLi.setAttribute('class', 'column-one-half');
+  ul.appendChild(imageLi);
+
+  const imageDiv = document.createElement('div');
+  imageLi.appendChild(imageDiv);
+
+  const image = document.createElement('img');
+  image.setAttribute('class', 'image-entry-desktop');
+  image.setAttribute('src', entry.url);
+  imageDiv.appendChild(image);
+
+  const textLi = document.createElement('li');
+  textLi.setAttribute('class', 'column-one-half');
+  ul.appendChild(textLi);
+
+  const textDiv = document.createElement('div');
+  textLi.appendChild(textDiv);
+
+  const title = document.createElement('h3');
+  title.textContent = entry.title;
+  textDiv.appendChild(title);
+
+  const notes = document.createElement('p');
+  notes.textContent = entry.notes;
+  textDiv.appendChild(notes);
+
+}
+
+renderEntry(data.entries[0]);
