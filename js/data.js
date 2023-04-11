@@ -12,3 +12,8 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('local-storage', codeJournalJSON);
 }
 );
+
+const previousJournalEntries = localStorage.getItem('local-storage');
+if (previousJournalEntries !== null) {
+  data = JSON.parse(previousJournalEntries);
+}
