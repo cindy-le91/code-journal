@@ -16,7 +16,7 @@ submitForm.addEventListener('submit', function (event) {
     notes,
     entryId: data.nextEntryId
   };
-  data.entries.push(newObject);
+  data.entries.unshift(newObject);
   data.nextEntryId++;
   const img = document.querySelector('img');
   img.src = './images/placeholder-image-square.jpg';
