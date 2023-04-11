@@ -30,10 +30,6 @@ img {
   max-width: 100%;
 }
 
-/* .image {
-  width: 100%;
-} */
-
 .minor-heading {
   font-style: normal;
   font-weight: 600;
@@ -154,6 +150,10 @@ textarea:focus {
     min-height: 350px;
     min-width: 350px;
   }
+
+  .is-justify-content-space-between {
+    justify-content: space-between;
+  }
 }
 
 .column-one-half {
@@ -167,4 +167,18 @@ h3 {
 
 ul {
   list-style-type: none;
+}
+
+.entries-header {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.is-justify-content-space-between {
+  display: flex;
+  padding-top: 20px;
+}
+
+#new-button {
+  padding-left: 200px;
 }
