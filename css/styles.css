@@ -27,12 +27,12 @@ header {
 img {
   height: 245px;
   border-radius: 4px;
-  width: 100%;
+  max-width: 100%;
 }
 
-.image {
+/* .image {
   width: 100%;
-}
+} */
 
 .minor-heading {
   font-style: normal;
@@ -84,6 +84,10 @@ textarea:focus {
   box-shadow: 0 0 1px 1px (#562b81/ 60%);
 }
 
+#id {
+  position: inherit;
+}
+
 @media screen and (min-width: 768px) {
   .entry-form {
     width: 80%;
@@ -119,4 +123,48 @@ textarea:focus {
   .button button {
     position: unset;
   }
+
+  .entries {
+    width: 80%;
+  }
+
+  .entries-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .entry-display {
+    width: 100%;
+    display: flex;
+  }
+
+  .image-desktop {
+    float: left;
+  }
+
+  .is-flex {
+    display: flex;
+  }
+
+  .column-one-half {
+    width: 50%;
+  }
+
+  .image-entry-desktop {
+    min-height: 350px;
+    min-width: 350px;
+  }
+}
+
+.column-one-half {
+  padding: 20px;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+ul {
+  list-style-type: none;
 }
