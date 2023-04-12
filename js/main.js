@@ -65,3 +65,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
     div.appendChild(dataEntry);
   }
 });
+
+function toggleNoEntries(event) {
+  const entries = document.querySelector('.entries');
+  if (entries.className === 'entries has-entries') {
+    entries.className = 'entries no-entries';
+  } else if (entries.className === 'entries no-entries') {
+    entries.className = 'entries hes-entries';
+  }
+}
+
+toggleNoEntries();
