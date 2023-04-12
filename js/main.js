@@ -37,6 +37,7 @@ function renderEntry(entry) {
 
   const imageLi = document.createElement('li');
   imageLi.setAttribute('class', 'column-one-half');
+  imageLi.setAttribute('data-entry-id', 'entryId');
   ul.appendChild(imageLi);
 
   const imageDiv = document.createElement('div');
@@ -57,6 +58,10 @@ function renderEntry(entry) {
   const title = document.createElement('h3');
   title.textContent = entry.title;
   textDiv.appendChild(title);
+
+  const pencil = document.createElement('i');
+  pencil.setAttribute('class', 'fa-solid fa-pencil');
+  title.appendChild(pencil);
 
   const notes = document.createElement('p');
   notes.textContent = entry.notes;
