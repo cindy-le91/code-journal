@@ -13,7 +13,7 @@
     referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -22,6 +22,7 @@
   <header>
     <div class="container">
       <span>Code Journal</span>
+      <span class="menu-entries">Entries</span>
     </div>
   </header>
   <main class="container">
@@ -51,7 +52,15 @@
 
       </form>
     </div>
-    <div data-view="entries" class="hidden"></div>
+    <div id="entries-page" data-view="entries" class="entries-desktop">
+      <div class="is-flex is-justify-content-space-between ">
+        <div class="entries-header"><span>Entries</span></div>
+        <div id="new-button"><button class="new-entries" type="submit">NEW</button></div>
+      </div>
+      <div class="all-entries">
+        <p id="no-entries-paragraph" class="entries has-entries has-display-none">No entries have been recorded.</p>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
