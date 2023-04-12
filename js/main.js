@@ -26,7 +26,7 @@ submitForm.addEventListener('submit', function (event) {
   submitForm.reset();
 
   const newEntry = renderEntry(newObject);
-  div.appendChild(newEntry);
+  div.prepend(newEntry);
   viewSwap('entries');
 });
 
@@ -69,7 +69,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
   if (data.entries.length === 0) {
     toggleNoEntries();
   }
+
   viewSwap('entry-form');
+
+  document.getElementById('no-entries-paragraph').className = 'has-display-block';
 
   for (let i = 0; i < data.entries.length; i++) {
     const dataEntry = renderEntry(data.entries[i]);
@@ -92,6 +95,11 @@ function viewSwap(view) {
   if (view === 'entries') {
     entryForm.style.display = 'none';
     entriesPage.className = 'entries-desktop';
+
+    if (data.entries.length > 0) {
+      document.getElementById('no-entries-paragraph').className = 'has-display-none';
+
+    }
   }
 
   if (view === 'entry-form') {

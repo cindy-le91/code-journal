@@ -198,3 +198,7 @@ ul {
 .has-display-none {
   display: none;
 }
+
+.has-display-block {
+  display: block;
+}
