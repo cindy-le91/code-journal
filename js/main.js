@@ -1,4 +1,7 @@
+const div = document.querySelector('.all-entries');
 const photoURL = document.getElementById('image-url');
+const entriesPage = document.getElementById('entries-page');
+
 photoURL.addEventListener('input', function (event) {
   const img = document.querySelector('img');
   img.src = event.target.value;
@@ -21,6 +24,10 @@ submitForm.addEventListener('submit', function (event) {
   const img = document.querySelector('img');
   img.src = './images/placeholder-image-square.jpg';
   submitForm.reset();
+
+  const newEntry = renderEntry(newObject);
+  div.appendChild(newEntry);
+  viewSwap('entries');
 });
 
 function renderEntry(entry) {
@@ -58,8 +65,12 @@ function renderEntry(entry) {
   return ul;
 }
 
-const div = document.querySelector('.all-entries');
 document.addEventListener('DOMContentLoaded', function (event) {
+  if (data.entries.length === 0) {
+    toggleNoEntries();
+  }
+  viewSwap('entry-form');
+
   for (let i = 0; i < data.entries.length; i++) {
     const dataEntry = renderEntry(data.entries[i]);
     div.appendChild(dataEntry);
@@ -67,27 +78,25 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 function toggleNoEntries(event) {
-  const entries = document.querySelector('.entries');
-  if (entries.className === 'entries has-entries') {
-    entries.className = 'entries no-entries';
-  } else if (entries.className === 'entries no-entries') {
-    entries.className = 'entries hes-entries';
+
+  if (data.entries.length === 0) {
+    entriesPage.className = 'has-display-none ';
+  } else {
+    entriesPage.className = 'entries-desktop';
   }
 }
-toggleNoEntries();
 
 function viewSwap(view) {
-  const entries = document.querySelector('.entries-desktop');
   const entryForm = document.querySelector('.entry-form');
 
   if (view === 'entries') {
-    entries.style.display = 'block';
     entryForm.style.display = 'none';
+    entriesPage.className = 'entries-desktop';
   }
 
   if (view === 'entry-form') {
-    entries.style.display = 'none';
     entryForm.style.display = 'block';
+    entriesPage.className = 'has-display-none';
   }
 }
 
