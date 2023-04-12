@@ -95,3 +95,8 @@ const entriesLink = document.querySelector('.menu-entries');
 entriesLink.addEventListener('click', function (event) {
   viewSwap('entries');
 });
+
+const newEntry = document.querySelector('.new-entries');
+newEntry.addEventListener('click', function (event) {
+  viewSwap('entry-form');
+});
