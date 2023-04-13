@@ -178,6 +178,10 @@ function populateEntryForm() {
       document.getElementById('modal').style.visibility = 'visible';
     });
   }
+  const delButton = document.querySelector('.cancel-delete');
+  delButton.addEventListener('click', function () {
+    document.getElementById('modal').style.visibility = 'hidden';
+  });
 }
 
 function updateOriginalEntry(entry, entryId) {

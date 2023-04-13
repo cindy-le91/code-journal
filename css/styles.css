@@ -220,12 +220,6 @@ i {
   margin-top: 10px;
 }
 
-/* .deletebtn {
-  background-color: none !important;
-  border: none !important;
-  padding: 0 !important;
-  color: red; */
-
 .modal-one {
   display: flex;
   align-items: center;
@@ -244,22 +238,44 @@ i {
   flex-direction: column;
   border: 0;
   width: 450px;
-  height: 225px;
-  border-radius: 5px;
+  height: 150px;
+  border-radius: 0;
 }
 
 .modal-button {
-  width: 100px;
-  height: 50px;
-  font-size: 25px;
+  width: 84px;
+  height: 32px;
+  font-size: 16px;
   color: white;
   box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
-  border-radius: 5px;
-  background-color: #ff5f5f;
+  border-radius: 4px;
+  background-color: #dc2626;
+  border: none;
+}
+
+.cancel-delete {
+  width: 84px;
+  height: 32px;
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+  border-radius: 4px;
+  background-color: #b6b6b6;
   border: none;
 }
 
 #modal {
   visibility: hidden;
   background: rgb(0 0 0 / 80%);
+}
+
+#modal button {
+  position: inherit;
+  font-family: "Open Sans", sans-serif;
+}
+
+#modal h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
