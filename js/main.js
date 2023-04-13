@@ -55,7 +55,6 @@ function renderEntry(entry) {
 
   const imageLi = document.createElement('li');
   imageLi.setAttribute('class', 'column-one-half');
-  // imageLi.setAttribute('data-entry-id', 'entryId');
   ul.appendChild(imageLi);
 
   const imageDiv = document.createElement('div');
@@ -161,12 +160,21 @@ function populateEntryForm() {
 
   titleInput.value = data.editing.title;
   imageInput.value = data.editing.image;
-  // const prevImg = document.getElementsByTagName('img');
-  // prevImg.setAttribute('src', data.editing.image);
   notesInput.value = data.editing.notes;
 
   const editTitle = document.querySelector('.new-entry');
   editTitle.textContent = 'Edit Entry';
+
+  const deleteButton = document.getElementById('delete-button');
+
+  if (!deleteButton) {
+    const deleteEntry = document.createElement('button');
+    const buttonDiv = document.querySelector('.button');
+    buttonDiv.setAttribute('id', 'delete-button');
+    deleteEntry.innerText = 'Delete Entry';
+    deleteEntry.setAttribute('class', 'deletebtn');
+    buttonDiv.prepend(deleteEntry);
+  }
 }
 
 function updateOriginalEntry(entry, entryId) {
