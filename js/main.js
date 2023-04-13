@@ -55,7 +55,7 @@ function renderEntry(entry) {
 
   const imageLi = document.createElement('li');
   imageLi.setAttribute('class', 'column-one-half');
-  imageLi.setAttribute('data-entry-id', 'entryId');
+  // imageLi.setAttribute('data-entry-id', 'entryId');
   ul.appendChild(imageLi);
 
   const imageDiv = document.createElement('div');
@@ -156,8 +156,13 @@ function populateEntryForm() {
   const imageInput = document.getElementById('image-url');
   const notesInput = document.getElementById('user-notes');
 
+  const img = document.querySelector('.display .image').firstChild;
+  img.setAttribute('src', data.editing.image);
+
   titleInput.value = data.editing.title;
   imageInput.value = data.editing.image;
+  // const prevImg = document.getElementsByTagName('img');
+  // prevImg.setAttribute('src', data.editing.image);
   notesInput.value = data.editing.notes;
 
   const editTitle = document.querySelector('.new-entry');
