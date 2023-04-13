@@ -16,23 +16,81 @@ submitForm.addEventListener('submit', function (event) {
   const newObject = {
     title,
     image,
-    notes,
-    entryId: data.nextEntryId
-  };
-  data.entries.unshift(newObject);
-  data.nextEntryId++;
-  const img = document.querySelector('img');
-  img.src = './images/placeholder-image-square.jpg';
-  submitForm.reset();
+    notes
+  };// I added this to close the object. Whether a new entry or an edited entry
+  // we will grab values from the form at the time so this applies to both possibilities.
 
-  const newEntry = renderEntry(newObject);
-  div.prepend(newEntry);
-  viewSwap('entries');
+  // entryId: data.nextEntryId // this should only be used for creating new entries so
+  // it goes in data.editing === null
+
+  if (data.editing === null) {
+    newObject.entryId = data.nextEntryId;
+    data.nextEntryId++;// I moved this here because we should only increment this value for new entries not edited entries
+    data.entries.unshift(newObject); // this should be moved to the conditional that we aren't working on an edited entry.
+    // We are adding in this case. We don't want to add when we are just editing.
+    const newEntry = renderEntry(newObject);
+    div.prepend(newEntry);
+    // viewSwap('entries'); // this can be moved outside of conditionals because we want it to happen whether it is a new
+    // entry or an edited entry on submit.
+  } else {
+    newObject.entryId = data.editing.entryId;// this applies the id of the current object being edited and adds it to our object.
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === newObject.entryId) {
+        data.entries[i] = newObject;
+      }
+    }
+    const updatedEntry = renderEntry(newObject);
+
+    updateOriginalEntry(updatedEntry, newObject.entryId);
+
+    viewSwap('entries'); // i moved this outside of any conditionals
+    // data.entries.unshift(newObject);
+    // data.nextEntryId++; // this should only increment when a new object is made not an edited object
+    const img = document.querySelector('img'); //
+    img.src = './images/placeholder-image-square.jpg';
+    submitForm.reset();
+    // const newEntry = renderEntry(newObject);
+    // div.prepend(newEntry); // this is already done in the conditional creating a new object
+    data.editing = null;
+    viewSwap('entries');
+  }
 });
+// const submitForm = document.querySelector('form');
+// submitForm.addEventListener('submit', function (event) {
+//   event.preventDefault();
+//   const title = submitForm.elements.title.value;
+//   const image = submitForm.elements.image.value;
+//   const notes = submitForm.elements.notes.value;
+//   const newObject = {
+//     title,
+//     image,
+//     notes,
+//     entryId: data.nextEntryId
+
+//     if (data.editing === null) {
+//   const newEntry = renderEntry(newObject);
+//   div.prepend(newEntry);
+//   viewSwap('entries');
+//     } else {
+
+//     }
+//   };
+//   data.entries.unshift(newObject);
+//   data.nextEntryId++;
+//   const img = document.querySelector('img');
+//   img.src = './images/placeholder-image-square.jpg';
+//   submitForm.reset();
+
+//   const newEntry = renderEntry(newObject);
+//   div.prepend(newEntry);
+//   viewSwap('entries');
+// });
 
 function renderEntry(entry) {
   const ul = document.createElement('ul');
   ul.setAttribute('class', 'is-flex');
+  ul.setAttribute('data-entry-id', entry.entryId);
 
   const imageLi = document.createElement('li');
   imageLi.setAttribute('class', 'column-one-half');
@@ -61,12 +119,10 @@ function renderEntry(entry) {
   const pencil = document.createElement('i');
   pencil.setAttribute('class', 'fa-solid fa-pencil');
   pencil.setAttribute('data-entry-id', entry.entryId);
-
   title.appendChild(pencil);
 
   pencil.addEventListener('click', function (event) {
     const clickedEntryId = event.target.attributes['data-entry-id'].value;
-    // Use the viewSwap function to show the form.
 
     viewSwap('entry-form');
 
@@ -77,9 +133,9 @@ function renderEntry(entry) {
         data.editing = data.entries[i];
       }
     }
-    // Pre - populate the entry form with the clicked entry's values from the object stored in the data.editing property.
+
     populateEntryForm();
-    // Updates the title of the entry - form view to Edit Entry
+
   });
 
   const notes = document.createElement('p');
@@ -147,6 +203,16 @@ function populateEntryForm() {
 
   const editTitle = document.querySelector('.new-entry');
   editTitle.textContent = 'Edit Entry';
+}
+
+function updateOriginalEntry(entry, entryId) {
+  const entries = document.getElementsByTagName('ul');
+  for (const i in entries) {
+    if (entries[i].attributes && parseInt(entries[i].attributes['data-entry-id'].value) === parseInt(entryId)) {
+      entries[i].replaceWith(entry);
+    }
+  //  }
+  }
 }
 
 const entriesLink = document.querySelector('.menu-entries');
