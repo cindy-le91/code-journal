@@ -174,6 +174,9 @@ function populateEntryForm() {
     deleteEntry.innerText = 'Delete Entry';
     deleteEntry.setAttribute('class', 'deletebtn');
     buttonDiv.prepend(deleteEntry);
+    deleteEntry.addEventListener('click', function (event) {
+      document.getElementById('modal').style.visibility = 'visible';
+    });
   }
 }
 
