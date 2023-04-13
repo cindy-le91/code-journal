@@ -27,7 +27,7 @@ header {
 img {
   height: 245px;
   border-radius: 4px;
-  max-width: 100%;
+  min-width: 80%;
 }
 
 .minor-heading {
@@ -148,13 +148,17 @@ textarea:focus {
 
   .image-entry-desktop {
     object-position: 50% 50%;
-    object-fit: contain;
-    min-width: 400px;
+    object-fit: cover;
+    min-width: 300px;
     min-height: 400px;
   }
 
   .is-justify-content-space-between {
     justify-content: space-between;
+  }
+
+  i {
+    padding-left: 800px;
   }
 }
 
@@ -201,4 +205,17 @@ ul {
 
 .has-display-block {
   display: block;
+}
+
+.text-div {
+  padding-left: 10px;
+}
+
+i {
+  padding-left: 200px;
+  margin-right: 50px;
+}
+
+#submit {
+  margin-top: 10px;
 }
