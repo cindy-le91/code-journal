@@ -25,6 +25,7 @@ submitForm.addEventListener('submit', function (event) {
     data.entries.unshift(newObject);
     const newEntry = renderEntry(newObject);
     div.prepend(newEntry);
+    viewSwap('entries');
 
   } else {
     newObject.entryId = data.editing.entryId;
@@ -38,7 +39,6 @@ submitForm.addEventListener('submit', function (event) {
 
     updateOriginalEntry(updatedEntry, newObject.entryId);
 
-    viewSwap('entries');
     const img = document.querySelector('img'); //
     img.src = './images/placeholder-image-square.jpg';
     submitForm.reset();
@@ -55,7 +55,6 @@ function renderEntry(entry) {
 
   const imageLi = document.createElement('li');
   imageLi.setAttribute('class', 'column-one-half');
-  // imageLi.setAttribute('data-entry-id', 'entryId');
   ul.appendChild(imageLi);
 
   const imageDiv = document.createElement('div');
@@ -86,17 +85,13 @@ function renderEntry(entry) {
   pencil.addEventListener('click', function (event) {
     const clickedEntryId = event.target.attributes['data-entry-id'].value;
 
+    setEditingEntry(clickedEntryId);
+
+    populateEntryForm(data.editing);
+
     viewSwap('entry-form');
 
-    for (let i = 0; i < data.entries.length; i++) {
-      if (parseInt(data.entries[i].entryId) === parseInt(clickedEntryId)) {
-
-        data.editing = data.entries[i];
-      }
-    }
-
-    populateEntryForm();
-
+    document.getElementsByClassName('deletebtn')[0].style.visibility = 'visible';
   });
 
   const notes = document.createElement('p');
@@ -124,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 function toggleNoEntries(event) {
 
   if (data.entries.length === 0) {
-    entriesPage.className = 'has-display-none ';
+    entriesPage.className = 'has-visibility-hidden';
   } else {
     entriesPage.className = 'entries-desktop';
   }
@@ -139,34 +134,73 @@ function viewSwap(view) {
 
     if (data.entries.length > 0) {
       document.getElementById('no-entries-paragraph').className = 'has-display-none';
+    } else {
+      document.getElementById('no-entries-paragraph').className = 'has-display-block';
 
     }
   }
 
   if (view === 'entry-form') {
     entryForm.style.display = 'block';
-    entriesPage.className = 'has-display-none';
-
+    entriesPage.className = 'has-visibility-hidden';
   }
 }
 
-function populateEntryForm() {
-
+function populateEntryForm(entry) {
   const titleInput = document.getElementById('title');
   const imageInput = document.getElementById('image-url');
   const notesInput = document.getElementById('user-notes');
 
   const img = document.querySelector('.display .image').firstChild;
+  if (!entry) {
+    return;
+  }
+
+  if (!data.editing) {
+    return;
+  }
+
   img.setAttribute('src', data.editing.image);
 
   titleInput.value = data.editing.title;
   imageInput.value = data.editing.image;
-  // const prevImg = document.getElementsByTagName('img');
-  // prevImg.setAttribute('src', data.editing.image);
   notesInput.value = data.editing.notes;
 
   const editTitle = document.querySelector('.new-entry');
+
+  // reset forms
   editTitle.textContent = 'Edit Entry';
+
+  const deleteButton = document.getElementById('delete-button');
+
+  if (!deleteButton && data.editing) {
+    const deleteEntry = document.createElement('button');
+    const buttonDiv = document.querySelector('.button');
+    buttonDiv.setAttribute('id', 'delete-button');
+    deleteEntry.innerText = 'Delete Entry';
+    deleteEntry.setAttribute('class', 'deletebtn');
+    buttonDiv.prepend(deleteEntry);
+    deleteEntry.addEventListener('click', function (event) {
+      document.getElementById('modal').style.visibility = 'visible';
+    });
+  }
+  const delButton = document.querySelector('.cancel-delete');
+  delButton.addEventListener('click', function () {
+    document.getElementById('modal').style.visibility = 'hidden';
+  });
+
+  const confirmButton = document.querySelector('.confirm-button');
+
+  confirmButton.addEventListener('click', function (event) {
+
+    deleteEntryFromList(entry);
+
+    deleteEntry(entry);
+
+    document.getElementById('modal').style.visibility = 'hidden';
+
+    viewSwap('entries');
+  });
 }
 
 function updateOriginalEntry(entry, entryId) {
@@ -179,6 +213,22 @@ function updateOriginalEntry(entry, entryId) {
   }
 }
 
+function setEditingEntry(clickedEntryId) {
+  for (let i = 0; i < data.entries.length; i++) {
+    if (parseInt(data.entries[i].entryId) === parseInt(clickedEntryId)) {
+      data.editing = data.entries[i];
+    }
+  }
+}
+
+function deleteEntry(entry) {
+  for (let i = 0; i < data.entries.length; i++) {
+    if (parseInt(data.entries[i].entryId) === parseInt(entry.entryId)) {
+      data.entries.splice(i - 1, 1);
+    }
+  }
+}
+
 const entriesLink = document.querySelector('.menu-entries');
 entriesLink.addEventListener('click', function (event) {
   viewSwap('entries');
@@ -188,5 +238,25 @@ const newEntry = document.querySelector('.new-entries');
 newEntry.addEventListener('click', function (event) {
   const editTitle = document.querySelector('.new-entry');
   editTitle.textContent = 'New Entry';
+  resetForm();
   viewSwap('entry-form');
+  document.getElementsByClassName('deletebtn')[0].style.visibility = 'hidden';
+
 });
+
+function deleteEntryFromList(entry) {
+
+  const uls = document.getElementsByTagName('ul');
+
+  for (let i = 0; i < uls.length; i++) {
+    if (parseInt(uls[i].attributes['data-entry-id'].value) === parseInt(entry.entryId)) {
+      uls[i].remove();
+    }
+  }
+}
+
+function resetForm() {
+  const form = document.getElementById('form');
+  form.reset();
+  data.editing = null;
+}

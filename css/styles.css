@@ -27,7 +27,9 @@ header {
 img {
   height: 245px;
   border-radius: 4px;
-  min-width: 80%;
+  min-width: 100%;
+  object-position: 50% 50%;
+  object-fit: cover;
 }
 
 .minor-heading {
@@ -60,7 +62,20 @@ img {
   justify-content: flex-end;
 }
 
-button {
+.save {
+  font-family: "Proza Libre", sans-serif;
+  font-size: 16px;
+  color: #f0f0f0;
+  background: #562b81;
+  border-radius: 4px;
+  position: absolute;
+  width: 72px;
+  height: 32px;
+  left: none;
+  top: none;
+}
+
+.new {
   font-family: "Proza Libre", sans-serif;
   font-size: 16px;
   color: #f0f0f0;
@@ -109,6 +124,8 @@ textarea:focus {
   .image {
     width: 50%;
     margin-right: 10px;
+    object-position: 50% 50%;
+    object-fit: cover;
   }
 
   .button {
@@ -160,6 +177,10 @@ textarea:focus {
   i {
     padding-left: 800px;
   }
+
+  .deletebtn {
+    padding-right: 255px;
+  }
 }
 
 .column-one-half {
@@ -207,6 +228,10 @@ ul {
   display: block;
 }
 
+.has-visibility-hidden {
+  visibility: hidden;
+}
+
 .text-div {
   padding-left: 10px;
 }
@@ -218,4 +243,80 @@ i {
 
 #submit {
   margin-top: 10px;
+}
+
+.modal-one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 0;
+  width: 450px;
+  height: 150px;
+  border-radius: 0;
+}
+
+.confirm-button {
+  width: 84px;
+  height: 32px;
+  font-size: 16px;
+  color: white;
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+  border-radius: 4px;
+  background-color: #dc2626;
+  border: none;
+  margin-top: 100px;
+  margin-left: 250px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.cancel-delete {
+  width: 84px;
+  height: 32px;
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+  border-radius: 4px;
+  background-color: #b6b6b6;
+  border: none;
+  margin-top: 50px;
+  font-family: "Open Sans", sans-serif;
+}
+
+#modal {
+  visibility: hidden;
+  background: rgb(0 0 0 / 80%);
+}
+
+#modal button {
+  margin-top: 50px;
+  font-family: "Open Sans", sans-serif;
+}
+
+#modal h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
+
+.deletebtn {
+  margin-top: 10px;
+  margin-right: 370px;
+  width: 100px;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #dc2626;
+  text-decoration: underline;
+  border: 0;
 }
