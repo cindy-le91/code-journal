@@ -10,10 +10,10 @@ var data = {
 window.addEventListener('beforeunload', function (event) {
   const codeJournalJSON = JSON.stringify(data);
   localStorage.setItem('local-storage', codeJournalJSON);
-}
-);
+});
 
 const previousJournalEntries = localStorage.getItem('local-storage');
-if (previousJournalEntries !== null) {
+
+if (previousJournalEntries !== 'null') {
   data = JSON.parse(previousJournalEntries);
 }
